@@ -11,6 +11,9 @@ import javax.validation.constraints.NotNull;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Entity
 @Table(name = "usuario_externo")
 public class UsuarioExterno {
@@ -103,6 +106,16 @@ public class UsuarioExterno {
 
 	public void setNuTelefone(String nuTelefone) {
 		this.nuTelefone = nuTelefone;
+	}
+
+	@Override
+	public String toString() {
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }

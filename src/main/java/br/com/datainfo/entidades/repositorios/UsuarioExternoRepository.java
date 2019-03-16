@@ -8,4 +8,6 @@ import br.com.datainfo.entidades.UsuarioExterno;
 @Repository
 public interface UsuarioExternoRepository extends JpaRepository<UsuarioExterno, String> {
 
+	UsuarioExterno findByNuCpf(String nuCpf);
+
 }

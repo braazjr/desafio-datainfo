@@ -10,6 +10,9 @@ import javax.validation.constraints.NotBlank;
 
 import org.hibernate.validator.constraints.Length;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 @Entity
 @Table(name = "funcao_usuario_externo")
 public class FuncaoUsuarioExterno {
@@ -38,6 +41,16 @@ public class FuncaoUsuarioExterno {
 
 	public void setNoFuncao(String noFuncao) {
 		this.noFuncao = noFuncao;
+	}
+
+	@Override
+	public String toString() {
+		try {
+			return new ObjectMapper().writeValueAsString(this);
+		} catch (JsonProcessingException e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 
 }
