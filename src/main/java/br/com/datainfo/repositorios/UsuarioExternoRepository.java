@@ -9,9 +9,11 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import br.com.datainfo.entidades.UsuarioExterno;
+import br.com.datainfo.repositorios.usuarioExterno.UsuarioExternoRepositoryCustom;
 
 @Repository
-public interface UsuarioExternoRepository extends JpaRepository<UsuarioExterno, String> {
+public interface UsuarioExternoRepository
+		extends JpaRepository<UsuarioExterno, String>, UsuarioExternoRepositoryCustom {
 
 	Optional<UsuarioExterno> findByNuCpf(String nuCpf);
 

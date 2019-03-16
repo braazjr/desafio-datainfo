@@ -1,10 +1,14 @@
 package br.com.datainfo.servicos;
 
+import java.util.List;
 import java.util.Optional;
+
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import br.com.datainfo.dto.UsuarioExternoFilter;
 import br.com.datainfo.entidades.UsuarioExterno;
 import br.com.datainfo.repositorios.UsuarioExternoRepository;
 
@@ -52,5 +56,19 @@ public class UsuarioExternoService {
 		}
 
 		return usuarioExterno.get();
+	}
+
+	public List<UsuarioExterno> listaUsuariosExterno(UsuarioExternoFilter filter) {
+		return repository.filtrar(filter);
+	}
+
+	public UsuarioExterno editarUsuario(String nuCpf, @Valid UsuarioExterno usuarioExterno) throws Exception {
+		if (!nuCpf.equals(usuarioExterno.getNuCpf())) {
+			throw new Exception("Usuário a editar é diferente do formulário");
+		}
+
+		buscaUsuario(nuCpf);
+
+		return repository.saveAndFlush(usuarioExterno);
 	}
 }

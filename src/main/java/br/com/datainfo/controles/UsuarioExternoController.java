@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import br.com.datainfo.dto.UsuarioExternoFilter;
 import br.com.datainfo.entidades.UsuarioExterno;
-import br.com.datainfo.repositorios.UsuarioExternoRepository;
 import br.com.datainfo.servicos.UsuarioExternoService;
 
 @RestController
@@ -24,14 +24,11 @@ import br.com.datainfo.servicos.UsuarioExternoService;
 public class UsuarioExternoController {
 
 	@Autowired
-	private UsuarioExternoRepository repository;
-
-	@Autowired
 	private UsuarioExternoService service;
 
 	@GetMapping
-	public ResponseEntity<List<UsuarioExterno>> listaUsuariosExterno() {
-		return ResponseEntity.ok(repository.findAll());
+	public ResponseEntity<List<UsuarioExterno>> listaUsuariosExterno(UsuarioExternoFilter filter) {
+		return ResponseEntity.ok(service.listaUsuariosExterno(filter));
 	}
 
 	@PostMapping
@@ -59,6 +56,17 @@ public class UsuarioExternoController {
 	public ResponseEntity<?> habilitaDesabilitaUsuario(@PathVariable String nuCpf) {
 		try {
 			return ResponseEntity.ok().body(service.habilitaDesabilitaUsuario(nuCpf));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
+
+	@PutMapping(value = "/{nuCpf}")
+	public ResponseEntity<?> editarUsuario(@PathVariable String nuCpf,
+			@RequestBody @Valid UsuarioExterno usuarioExterno) {
+		try {
+			return ResponseEntity.ok(service.editarUsuario(nuCpf, usuarioExterno));
 		} catch (Exception e) {
 			e.printStackTrace();
 			return ResponseEntity.badRequest().body(e.getMessage());
