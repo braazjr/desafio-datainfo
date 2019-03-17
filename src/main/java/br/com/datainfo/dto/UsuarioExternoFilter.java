@@ -4,6 +4,7 @@ public class UsuarioExternoFilter {
 
 	private String situacao;
 	private String perfil;
+	private String nome;
 
 	public String getSituacao() {
 		return situacao;
@@ -20,4 +21,13 @@ public class UsuarioExternoFilter {
 	public void setPerfil(String perfil) {
 		this.perfil = perfil;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
 }

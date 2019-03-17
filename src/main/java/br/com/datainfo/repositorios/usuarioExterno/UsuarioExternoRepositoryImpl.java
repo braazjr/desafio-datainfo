@@ -30,6 +30,11 @@ public class UsuarioExternoRepositoryImpl implements UsuarioExternoRepositoryCus
 		Root<UsuarioExterno> usuarioExterno = query.from(UsuarioExterno.class);
 		List<Predicate> predicates = new ArrayList<Predicate>();
 
+		if (filter.getNome() != null) {
+			predicates.add(builder.like(builder.lower(usuarioExterno.get("noUsuario")),
+					"%" + filter.getNome().toLowerCase() + "%"));
+		}
+
 		if (filter.getSituacao() != null) {
 			predicates.add(builder.equal(usuarioExterno.get("icSituacao"), filter.getSituacao()));
 		}
