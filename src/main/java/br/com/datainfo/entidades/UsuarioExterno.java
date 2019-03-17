@@ -35,7 +35,7 @@ public class UsuarioExterno {
 	private String deEmail;
 
 	@Column(name = "ic_situacao")
-	@NotBlank(message = "O campo situacao é obrigatório!")
+//	@NotBlank(message = "O campo situacao é obrigatório!")
 	private String icSituacao;
 
 	@Column(name = "ic_perfil_acesso")
@@ -49,7 +49,6 @@ public class UsuarioExterno {
 
 	@Column(name = "nu_telefone")
 	@Length(max = 11, message = "O campo telefone pode ter até 11 caracteres!")
-	@NotBlank(message = "O campo telefone é obrigatório!")
 	private String nuTelefone;
 
 	public String getNuCpf() {

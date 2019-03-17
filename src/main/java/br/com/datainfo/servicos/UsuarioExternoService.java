@@ -23,6 +23,7 @@ public class UsuarioExternoService {
 			throw new Exception("Operação não realizada. Usuário já incluído");
 		}
 
+		usuarioExterno.setIcSituacao("A");
 		return repository.saveAndFlush(usuarioExterno);
 	}
 
