@@ -72,4 +72,14 @@ public class UsuarioExternoController {
 			return ResponseEntity.badRequest().body(e.getMessage());
 		}
 	}
+
+	@GetMapping(value = "/{nuCpf}")
+	public ResponseEntity<?> buscaUsuarioExterno(@PathVariable String nuCpf) {
+		try {
+			return ResponseEntity.ok(service.buscaUsuario(nuCpf));
+		} catch (Exception e) {
+			e.printStackTrace();
+			return ResponseEntity.badRequest().body(e.getMessage());
+		}
+	}
 }

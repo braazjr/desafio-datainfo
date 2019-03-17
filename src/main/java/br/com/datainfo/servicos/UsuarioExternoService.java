@@ -49,7 +49,7 @@ public class UsuarioExternoService {
 		return buscaUsuario(nuCpf);
 	}
 
-	private UsuarioExterno buscaUsuario(String nuCpf) throws Exception {
+	public UsuarioExterno buscaUsuario(String nuCpf) throws Exception {
 		Optional<UsuarioExterno> usuarioExterno = repository.findByNuCpf(nuCpf);
 
 		if (!usuarioExterno.isPresent()) {
