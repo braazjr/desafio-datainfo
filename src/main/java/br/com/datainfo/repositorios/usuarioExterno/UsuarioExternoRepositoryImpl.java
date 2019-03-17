@@ -1,6 +1,7 @@
 package br.com.datainfo.repositorios.usuarioExterno;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -38,6 +39,7 @@ public class UsuarioExternoRepositoryImpl implements UsuarioExternoRepositoryCus
 		}
 
 		query.where(predicates.toArray(new Predicate[0]));
+		query.orderBy(Arrays.asList(builder.asc(usuarioExterno.get("noUsuario"))));
 
 		return manager.createQuery(query).getResultList();
 	}
